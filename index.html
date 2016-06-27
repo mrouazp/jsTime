@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Текущее время:</h1>
+
+<p class = "letter" id = "time"></p>
+
+<h1>Секундомер:</h1>
+
+<form name="stopWatch">
+    <input class="letter" type = "text" id = "sec" name = "sec" value = "00:00:00"><br>
+    <input type = "button" value = "Start" onClick = "swButton()">
+    <input type = "button" id = "stpbutton" value = "Stop" onClick = "swButton()">
+    <input type = "button" name = "reset" value = "Reset" onClick="clearAll()">
+</form>
+
+<script src="js/time.js" type="text/javascript">
+
+</script>
+</body>
+</html>
