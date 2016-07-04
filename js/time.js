@@ -1,4 +1,4 @@
-function trim(string) { return string.replace (/\s+/g, " ").replace(/(^\s*)|(\s*)$/g, ''); }
+function trim(string) { return string.replace (/\s/g, " ").replace(/(^\s)$/g, ''); }
 var init=0;
 var startDate;
 var clocktimer;
