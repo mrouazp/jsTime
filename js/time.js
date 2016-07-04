@@ -1,44 +1,45 @@
+function trim(string) { return string.replace (/\s+/g, " ").replace(/(^\s*)|(\s*)$/g, ''); }
+var init=0;
+var startDate;
+var clocktimer;
 
-var h1 = document.getElementsByTagName('h1')[0],
-    str = document.getElementById('str'),
-    stp = document.getElementById('stp'),
-    clr = document.getElementById('clr'),
-    sec = 0, min = 0, hours = 0,
-    sw;
-
-function starTime() {
-    sec++;
-    if (sec >= 60) {
-        sec = 0;
-        min++;
-        if (min >= 60) {
-            min = 0;
-            hours++;
-        }
+function clearFields() {
+    init = 0;
+    clearTimeout(clocktimer);
+    document.clockform.clock.value='00:00:00';
     }
 
-    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" +
-        (min ? (min > 9 ? min : "0" + min) : "00") + ":" +
-        (sec > 9 ? sec : "0" + sec);
-
-    timer();
-}
-function timer() {
-    sw = setTimeout('starTime()', 1000);
-}
-timer();
-
-
-/* Старт */
-str.onclick = timer;
-
-/* Стоп */
-stp.onclick = function() {
-    clearTimeout(sw);
+function clearALL() {
+    clearFields();
+    document.getElementById('marker').innerHTML = '';
 }
 
-/* Кнопка сброса */
-clr.onclick = function() {
-    h1.textContent = "00:00:00";
-    sec = 0; min = 0; hours = 0;
+function startTIME() {
+    var thisDate = new Date();
+    var t = thisDate.getTime() - startDate.getTime();
+    t = Math.floor (t/1000);
+    var s = t%60; t-=s;
+    t = Math.floor (t/60);
+    var m = t%60; t-=m;
+    t = Math.floor (t/60);
+    var h = t%60;
+    if (h<10) h='0'+h;
+    if (m<10) m='0'+m;
+    if (s<10) s='0'+s;
+    if (init==1) document.clockform.clock.value = h + ':' + m + ':' + s;
+    clocktimer = setTimeout("startTIME()",10);
+}
+
+function findTIME() {
+    if (init==0) {
+        startDate = new Date();
+        startTIME();
+        init=1;
+    }
+    else {
+        var str = trim(document.clockform.starter.value);
+        document.getElementById('marker').innerHTML = (str==''?'':str+': ') +
+            document.clockform.clock.value + '<br>' + document.getElementById('marker').innerHTML;
+        clearFields();
+    }
 }

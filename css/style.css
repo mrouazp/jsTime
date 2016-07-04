@@ -1,14 +1,9 @@
-h1 {
+p {
+    color: rebeccapurple;
     font-size: 20px;
 }
-input {
-    margin: 10px;
-}
-.letter {
+.clock {
     border: none;
     color: green;
-    font-size: 30px;
-}
-input.letter {
     font-size: 20px;
 }
