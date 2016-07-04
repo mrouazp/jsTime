@@ -37,8 +37,8 @@ function findTIME() {
         init=1;
     }
     else {
-        var str = trim(document.clockform.starter.value);
-        document.getElementById('marker').innerHTML = (str==''?'':str+': ') +
+        var str = trim(document.clockform.starter.id);
+        document.getElementById('marker').innerHTML = (str+': ') +
             document.clockform.clock.value + '<br>' + document.getElementById('marker').innerHTML;
         clearFields();
     }
